@@ -17,9 +17,17 @@ public class Player {
      * check the assigment text for more details on winning condition
      */
     public boolean checkWinning() {
-        return false;
+        int maxLength = findLongestChain();
+        if( maxLength >= 14)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
-
     /*
      * TODO: used for finding the longest chain in this player hand
      * this method should iterate over playerTiles to find the longest chain
@@ -28,7 +36,23 @@ public class Player {
      */
     public int findLongestChain() {
         int longestChain = 0;
-
+        int currentChain = 0;
+        for (int i = 0; i < playerTiles.length; i++)
+        {
+            
+            if (playerTiles[i].getValue() == playerTiles[i - 1].getValue() + 1) 
+            {
+                currentChain++; 
+                if (currentChain > longestChain) 
+                {
+                    longestChain = currentChain; 
+                }
+            } 
+            else 
+            {
+                currentChain = 1; // Reset the current chain length
+            }
+        }
         return longestChain;
     }
 
@@ -36,6 +60,15 @@ public class Player {
      * TODO: removes and returns the tile in given index position
      */
     public Tile getAndRemoveTile(int index) {
+        if ( this.numberOfTiles > index )
+        {
+            Tile result = this.playerTiles[index];
+            for ( int i = index + 1; i < this.numberOfTiles; i++ )
+            {
+                this.playerTiles[i - 1] = this.playerTiles[i];
+            }
+            return result;
+        }
         return null;
     }
 
@@ -45,7 +78,15 @@ public class Player {
      * then shift the remaining tiles to the right by one
      */
     public void addTile(Tile t) {
-
+        if ( this.numberOfTiles < 15 )
+        {
+            this.playerTiles[numberOfTiles] = t;
+            this.numberOfTiles++;
+        }
+        else
+        {
+            System.out.println( "You can't have more than 15 tiles.");
+        }
     }
 
     /*
