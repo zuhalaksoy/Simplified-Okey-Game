@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class SimplifiedOkeyGame {
 
     Player[] players;
@@ -58,6 +60,15 @@ public class SimplifiedOkeyGame {
      * TODO: should randomly shuffle the tiles array before game starts
      */
     public void shuffleTiles() {
+
+        Random rand = new Random();
+
+        for (int i = 0; i < tiles.length; i++) {
+			int randomIndexToSwap = rand.nextInt(tiles.length);
+			Tile temp = tiles[randomIndexToSwap];
+			tiles[randomIndexToSwap] = tiles[i];
+			tiles[i] = temp;
+		}
 
     }
 
