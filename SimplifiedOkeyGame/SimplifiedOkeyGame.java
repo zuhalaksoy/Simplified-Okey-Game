@@ -57,14 +57,14 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: should randomly shuffle the tiles array before game starts
+     * should randomly shuffle the tiles array before game starts
      */
     public void shuffleTiles() {
 
         Random rand = new Random();
 
         for (int i = 0; i < tiles.length; i++) {
-			int randomIndexToSwap = rand.nextInt(tiles.length);
+			int randomIndexToSwap = i + rand.nextInt(tiles.length - i);
 			Tile temp = tiles[randomIndexToSwap];
 			tiles[randomIndexToSwap] = tiles[i];
 			tiles[i] = temp;
@@ -97,14 +97,24 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: pick a tile for the current computer player using one of the following:
+     * pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * you should check if getting the discarded tile is useful for the computer
      * by checking if it increases the longest chain length, if not get the top tile
      */
     public void pickTileForComputer() {
+        //test if it is worth getting the discarded card
+        players[currentPlayerIndex].addTile(lastDiscardedTile);
+        int newChain = players[currentPlayerIndex].findLongestChain();
+        players[currentPlayerIndex].getAndRemoveTile(players[currentPlayerIndex].findPositionOfTile(lastDiscardedTile));
 
+        if (players[currentPlayerIndex].findLongestChain() < newChain) {
+            players[currentPlayerIndex].getLastDiscardedTile();
+        }
+        else{
+            players[currentPlayerIndex].getTopTile();
+        }
     }
 
     /*

@@ -10,7 +10,7 @@ public class Player {
     }
 
     /*
-     * TODO: checks this player's hand to determine if this player is winning
+     * checks this player's hand to determine if this player is winning
      * the player with a complete chain of 14 consecutive numbers wins the game
      * note that the player whose turn is now draws one extra tile to have 15 tiles in hand,
      * and the extra tile does not disturb the longest chain and therefore the winning condition
@@ -29,7 +29,7 @@ public class Player {
         
     }
     /*
-     * TODO: used for finding the longest chain in this player hand
+     * used for finding the longest chain in this player hand
      * this method should iterate over playerTiles to find the longest chain
      * of consecutive numbers, used for checking the winning condition
      * and also for determining the winner if tile stack has no tiles
@@ -57,7 +57,7 @@ public class Player {
     }
 
     /*
-     * TODO: removes and returns the tile in given index position
+     * removes and returns the tile in given index position
      */
     public Tile getAndRemoveTile(int index) {
         if ( this.numberOfTiles > index )
@@ -73,15 +73,33 @@ public class Player {
     }
 
     /*
-     * TODO: adds the given tile to this player's hand keeping the ascending order
+     * adds the given tile to this player's hand keeping the ascending order
      * this requires you to loop over the existing tiles to find the correct position,
      * then shift the remaining tiles to the right by one
      */
     public void addTile(Tile t) {
         if ( this.numberOfTiles < 15 )
         {
-            this.playerTiles[numberOfTiles] = t;
-            this.numberOfTiles++;
+            //find the corret position of the tile
+            int tileIndex = 0;
+            if (t.compareTo(playerTiles[numberOfTiles-1]) == 1) {
+                tileIndex = numberOfTiles;
+            }
+            else{
+                for (int i = 0; i < numberOfTiles - 1; i++) 
+                {
+                    if (t.compareTo(playerTiles[i]) >= 0 && t.compareTo(playerTiles[i+1])  <= 0) {
+                        tileIndex = i + 1;
+                    }
+                }
+            }
+
+            //place the tile to the correct position
+            for (int i = numberOfTiles - 1; i >= tileIndex; i--) 
+            {
+                playerTiles[i + 1] = playerTiles[i];
+            }
+            playerTiles[tileIndex] = t;
         }
         else
         {
