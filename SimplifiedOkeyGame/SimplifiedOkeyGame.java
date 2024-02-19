@@ -35,6 +35,31 @@ public class SimplifiedOkeyGame {
      */
     public void distributeTilesToPlayers() {
 
+        for(int i = 0; i < 15; i++){
+            players[0].getTiles()[i] = tiles[0];
+            removeTopTile(tiles);
+            players[0].numberOfTiles++;
+        }
+
+        for(int j = 1; j < 4; j++){
+            for(int i = 0; i < 14; i++){
+                players[j].getTiles()[i] = tiles[0];
+                removeTopTile(tiles);
+                players[j].numberOfTiles++;
+            }
+        }
+    }
+
+    //removing the top tile from the tiles array 
+    public static void removeTopTile(Tile[] arr) {
+        if (arr.length == 0) {
+            return; 
+        }
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            arr[i] = arr[i + 1]; 
+        }
+        arr[arr.length - 1] = null; 
     }
 
     /*
@@ -43,7 +68,8 @@ public class SimplifiedOkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        return null;
+        players[getCurrentPlayerIndex()].addTile(lastDiscardedTile); 
+        return lastDiscardedTile.toString();
     }
 
     /*
@@ -53,7 +79,14 @@ public class SimplifiedOkeyGame {
      * returns the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return null;
+        players[getCurrentPlayerIndex()].addTile(tiles[0]);
+
+        //the top tile of the tiles array
+        String s = tiles[0].toString();
+
+        removeTopTile(tiles);
+
+        return s;
     }
 
     /*
