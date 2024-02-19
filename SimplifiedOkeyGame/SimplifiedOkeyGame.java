@@ -143,10 +143,10 @@ public class SimplifiedOkeyGame {
         players[currentPlayerIndex].getAndRemoveTile(players[currentPlayerIndex].findPositionOfTile(lastDiscardedTile));
 
         if (players[currentPlayerIndex].findLongestChain() < newChain) {
-            players[currentPlayerIndex].getLastDiscardedTile();
+            getLastDiscardedTile();
         }
         else{
-            players[currentPlayerIndex].getTopTile();
+            getTopTile();
         }
     }
 
