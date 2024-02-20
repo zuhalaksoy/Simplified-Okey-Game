@@ -29,7 +29,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: distributes the starting tiles to the players
+     * distributes the starting tiles to the players
      * player at index 0 gets 15 tiles and starts first
      * other players get 14 tiles, this method assumes the tiles are already shuffled
      */
@@ -63,7 +63,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: get the last discarded tile for the current player
+     * get the last discarded tile for the current player
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
@@ -73,7 +73,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: get the top tile from tiles array for the current player
+     * get the top tile from tiles array for the current player
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
      * and it will be given to the current player
      * returns the toString method of the tile so that we can print what we picked
@@ -150,6 +150,10 @@ public class SimplifiedOkeyGame {
         }
     }
 
+    /*
+     * Current player will discard a duplicate tile.
+     * If there are no duplicates return false.
+     */
     public boolean discardDuplicate() {
         boolean hasDuplicate = false;
         int discardIndex = -1;
@@ -171,12 +175,27 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: Current computer player will discard the least useful tile.
+     * Current computer player will discard the least useful tile.
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
         if (!discardDuplicate()) {
             //discard the farthest away tile from the longest chain
+            double middleIndex = players[currentPlayerIndex].findMiddleOfLongestChain();
+            if (middleIndex == players[currentPlayerIndex].playerTiles.length / 2) {
+                if (Math.random() < 0.5) {
+                    discardTile(0);
+                }
+                else{
+                    discardTile(players[currentPlayerIndex].playerTiles.length - 1);
+                }
+            }
+            else if (middleIndex < players[currentPlayerIndex].playerTiles.length / 2) {
+                discardTile(players[currentPlayerIndex].playerTiles.length - 1);
+            }
+            else{
+                discardTile(0);
+            }
         }
     }
 

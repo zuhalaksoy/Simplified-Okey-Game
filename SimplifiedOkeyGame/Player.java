@@ -57,6 +57,37 @@ public class Player {
     }
 
     /*
+     * Used for determining the middle index of the longest chain.
+     * If there are more than one longest chains find the middle of the middle indexes.
+     */
+    public double findMiddleOfLongestChain() {
+        int longestChain = 0;
+        int currentChain = 0;
+        double middleIndex = 0;
+        for (int i = 0; i < playerTiles.length - 2; i++)
+        {
+            
+            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) 
+            {
+                currentChain++; 
+                if (currentChain > longestChain) 
+                {
+                    longestChain = currentChain; 
+                    middleIndex = longestChain / 2.0 + i;
+                }
+                else if (currentChain == longestChain) {// if there are two longest chains
+                    middleIndex = middleIndex + longestChain / 2.0 + i;
+                }
+            }
+            else if (playerTiles[i].getValue() != playerTiles[i + 1].getValue())
+            {
+                currentChain = 1; // Reset the current chain length
+            }
+        }
+        return middleIndex;
+    }
+
+    /*
      * removes and returns the tile in given index position
      */
     public Tile getAndRemoveTile(int index) {

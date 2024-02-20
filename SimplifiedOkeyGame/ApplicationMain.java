@@ -76,9 +76,14 @@ public class ApplicationMain {
                     // if game continues we need to discard a tile using the given index by the player
                     System.out.println("Which tile you will discard?");
                     System.out.print("Discard the tile in index: ");
-                    playerChoice = sc.nextInt();
-
-                    // TODO: make sure the given index is correct, should be 0 <= index <= 14
+                    
+                    do {
+                        playerChoice = sc.nextInt();
+                        if (playerChoice < 0 || playerChoice > 14) {
+                            System.out.print("Please enter a value between 0 and 14:");
+                            sc.nextLine();
+                        }
+                    } while (playerChoice < 0 || playerChoice > 14);
 
                     game.discardTile(playerChoice);
                     game.passTurnToNextPlayer();
@@ -89,9 +94,11 @@ public class ApplicationMain {
                         System.out.println("Congratulations, you win!");    
                     }
                     else{
-                        // TODO: the game ended with no more tiles in the stack
+                        // the game ended with no more tiles in the stack
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
+                        System.out.println("The game ended with no more tiles in the stack!");
+                        System.out.println(getPlayerWithHighestLongestChain().getName() + " won the game!");
                     }
                 }
             }
@@ -117,9 +124,11 @@ public class ApplicationMain {
                         System.out.println(game.getCurrentPlayerName() + " wins.");
                     }
                     else{
-                        // TODO: the game ended with no more tiles in the stack
+                        // the game ended with no more tiles in the stack
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
+                        System.out.println("The game ended with no more tiles in the stack!");
+                        System.out.println(getPlayerWithHighestLongestChain().getName() + " won the game!");
                     }
                 }
             }
