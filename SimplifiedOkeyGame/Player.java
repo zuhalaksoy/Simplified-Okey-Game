@@ -37,18 +37,18 @@ public class Player {
     public int findLongestChain() {
         int longestChain = 0;
         int currentChain = 0;
-        for (int i = 0; i < playerTiles.length; i++)
+        for (int i = 0; i < playerTiles.length - 2; i++)
         {
             
-            if (playerTiles[i].getValue() == playerTiles[i - 1].getValue() + 1) 
+            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) 
             {
                 currentChain++; 
                 if (currentChain > longestChain) 
                 {
                     longestChain = currentChain; 
                 }
-            } 
-            else 
+            }
+            else if (playerTiles[i].getValue() != playerTiles[i + 1].getValue())
             {
                 currentChain = 1; // Reset the current chain length
             }

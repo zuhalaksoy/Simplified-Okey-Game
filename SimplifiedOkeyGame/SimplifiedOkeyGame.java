@@ -150,12 +150,34 @@ public class SimplifiedOkeyGame {
         }
     }
 
+    public boolean discardDuplicate() {
+        boolean hasDuplicate = false;
+        int discardIndex = -1;
+        int index = 0;
+
+        while (hasDuplicate || index >= tiles.length - 2) {
+            if (players[currentPlayerIndex].playerTiles[index] == players[currentPlayerIndex].playerTiles[index + 1]) {
+                discardIndex = index;
+                index++;
+                hasDuplicate = true;
+            }
+        }
+
+        if (hasDuplicate) {
+            discardTile(discardIndex);
+        }
+
+        return hasDuplicate;
+    }
+
     /*
      * TODO: Current computer player will discard the least useful tile.
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
-
+        if (!discardDuplicate()) {
+            //discard the farthest away tile from the longest chain
+        }
     }
 
     /*
