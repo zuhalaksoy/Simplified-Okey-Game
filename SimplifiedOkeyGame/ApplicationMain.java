@@ -98,7 +98,7 @@ public class ApplicationMain {
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
                         System.out.println("The game ended with no more tiles in the stack!");
-                        System.out.println(getPlayerWithHighestLongestChain().getName() + " won the game!");
+                        System.out.println(game.getPlayerWithHighestLongestChain()[0].getName() + " won the game!");
                     }
                 }
             }
@@ -128,7 +128,7 @@ public class ApplicationMain {
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
                         System.out.println("The game ended with no more tiles in the stack!");
-                        System.out.println(getPlayerWithHighestLongestChain().getName() + " won the game!");
+                        System.out.println(game.getPlayerWithHighestLongestChain()[0].getName() + " won the game!");
                     }
                 }
             }
