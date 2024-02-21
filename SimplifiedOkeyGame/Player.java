@@ -103,6 +103,11 @@ public class Player {
         return null;
     }
 
+        /*
+     * TODO: Sort the tile in ascending order
+     * 
+     */
+
     /*
      * adds the given tile to this player's hand keeping the ascending order
      * this requires you to loop over the existing tiles to find the correct position,
