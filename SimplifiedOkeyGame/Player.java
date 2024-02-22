@@ -107,6 +107,22 @@ public class Player {
      * TODO: Sort the tile in ascending order
      * 
      */
+    public void sortTileInAscendingOrder(){
+        int index = -1;
+
+        for(int i = 0; i < getTiles().length; i++){
+            index = i;
+            for(int j = i; j < getTiles().length; j++){
+                if(getTiles()[j].getValue() < getTiles()[index].getValue()){
+                    index = j;
+                }
+            }
+
+            Tile temp = getTiles()[i];
+            getTiles()[i] = getTiles()[index];
+            getTiles()[index] = temp;
+        }
+    }
 
     /*
      * adds the given tile to this player's hand keeping the ascending order

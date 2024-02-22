@@ -39,6 +39,7 @@ public class SimplifiedOkeyGame {
             players[0].getTiles()[i] = tiles[0];
             removeTopTile(tiles);
             players[0].numberOfTiles++;
+            players[0].sortTileInAscendingOrder();
         }
 
         for(int j = 1; j < 4; j++){
@@ -46,6 +47,7 @@ public class SimplifiedOkeyGame {
                 players[j].getTiles()[i] = tiles[0];
                 removeTopTile(tiles);
                 players[j].numberOfTiles++;
+                players[j].sortTileInAscendingOrder();
             }
         }
     }
