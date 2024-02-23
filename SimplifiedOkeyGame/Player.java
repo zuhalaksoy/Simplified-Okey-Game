@@ -142,22 +142,24 @@ public class Player {
         {
             //find the corret position of the tile
             int tileIndex = 0;
-            if (numberOfTiles <= 1) {
-                tileIndex = numberOfTiles;
-            }
-            else{
-                for (int i = 0; i < numberOfTiles - 1; i++) 
-                {
-                    if (t.compareTo(playerTiles[i]) >= 0 && t.compareTo(playerTiles[i+1])  <= 0) {
-                        tileIndex = i + 1;
+            if (numberOfTiles > 0) {
+                if (t.compareTo(playerTiles[numberOfTiles-1]) == 1) {
+                    tileIndex = numberOfTiles;
+                }
+                else{
+                    for (int i = 0; i < numberOfTiles - 1; i++) 
+                    {
+                        if (t.compareTo(playerTiles[i]) >= 0 && t.compareTo(playerTiles[i+1])  <= 0) {
+                            tileIndex = i + 1;
+                        }
                     }
                 }
-            }
-
-            //place the tile to the correct position
-            for (int i = numberOfTiles - 1; i >= tileIndex; i--) 
-            {
-                playerTiles[i + 1] = playerTiles[i];
+    
+                //place the tile to the correct position
+                for (int i = numberOfTiles - 1; i >= tileIndex; i--) 
+                {
+                    playerTiles[i + 1] = playerTiles[i];
+                }
             }
             playerTiles[tileIndex] = t;
             numberOfTiles++;
