@@ -229,11 +229,14 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: discards the current player's tile at given index
+     * discards the current player's tile at given index
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
+
+        Player currentPlayer = players[getCurrentPlayerIndex()];
+        lastDiscardedTile = currentPlayer.getAndRemoveTile(tileIndex);
 
     }
 
