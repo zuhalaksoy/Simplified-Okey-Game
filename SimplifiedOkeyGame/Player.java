@@ -98,21 +98,29 @@ public class Player {
             {
                 this.playerTiles[i - 1] = this.playerTiles[i];
             }
+            numberOfTiles--;
             return result;
         }
         return null;
     }
 
-        /*
+    /*
      * TODO: Sort the tile in ascending order
      * 
      */
     public void sortTileInAscendingOrder(){
         int index = -1;
 
+        int noOfTiles = 0;
         for(int i = 0; i < getTiles().length; i++){
+            if (getTiles()[i] != null) {
+                noOfTiles++;
+            }
+        }
+
+        for(int i = 0; i < noOfTiles; i++){
             index = i;
-            for(int j = i; j < getTiles().length; j++){
+            for(int j = i; j < noOfTiles; j++){
                 if(getTiles()[j].getValue() < getTiles()[index].getValue()){
                     index = j;
                 }
@@ -134,7 +142,7 @@ public class Player {
         {
             //find the corret position of the tile
             int tileIndex = 0;
-            if (t.compareTo(playerTiles[numberOfTiles-1]) == 1) {
+            if (numberOfTiles <= 1) {
                 tileIndex = numberOfTiles;
             }
             else{
@@ -152,6 +160,7 @@ public class Player {
                 playerTiles[i + 1] = playerTiles[i];
             }
             playerTiles[tileIndex] = t;
+            numberOfTiles++;
         }
         else
         {

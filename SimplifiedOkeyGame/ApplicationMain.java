@@ -21,7 +21,7 @@ public class ApplicationMain {
         // developer mode is used for seeing the computer players hands, to be used for debugging
         System.out.print("Play in developer's mode with other player's tiles visible? (Y/N): ");
         char devMode = sc.next().charAt(0);
-        boolean devModeOn = devMode == 'Y';
+        boolean devModeOn = (devMode == 'Y' || devMode == 'y');
         
         boolean firstTurn = true;
         boolean gameContinues = true;

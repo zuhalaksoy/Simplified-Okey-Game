@@ -36,19 +36,21 @@ public class SimplifiedOkeyGame {
     public void distributeTilesToPlayers() {
 
         for(int i = 0; i < 15; i++){
-            players[0].getTiles()[i] = tiles[0];
+            players[0].addTile(tiles[0]);
+            tileCount--;
             removeTopTile(tiles);
             players[0].numberOfTiles++;
-            players[0].sortTileInAscendingOrder();
         }
+        players[0].sortTileInAscendingOrder();
 
         for(int j = 1; j < 4; j++){
             for(int i = 0; i < 14; i++){
-                players[j].getTiles()[i] = tiles[0];
+                players[j].addTile(tiles[0]);
+                tileCount--;
                 removeTopTile(tiles);
                 players[j].numberOfTiles++;
-                players[j].sortTileInAscendingOrder();
             }
+            players[j].sortTileInAscendingOrder();
         }
     }
 
@@ -61,7 +63,7 @@ public class SimplifiedOkeyGame {
         for (int i = 0; i < arr.length - 1; i++) {
             arr[i] = arr[i + 1]; 
         }
-        arr[arr.length - 1] = null; 
+        arr[arr.length - 1] = null;
     }
 
     /*
