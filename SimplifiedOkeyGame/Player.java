@@ -107,7 +107,7 @@ public class Player {
     /*
      * TODO: Sort the tile in ascending order
      * 
-     */
+    
     public void sortTileInAscendingOrder(){
         int index = -1;
 
@@ -130,7 +130,7 @@ public class Player {
             getTiles()[i] = getTiles()[index];
             getTiles()[index] = temp;
         }
-    }
+    } */
 
     /*
      * adds the given tile to this player's hand keeping the ascending order
@@ -140,28 +140,19 @@ public class Player {
     public void addTile(Tile t) {
         if ( this.numberOfTiles < 15 )
         {
-            //find the corret position of the tile
-            int tileIndex = 0;
-            if (numberOfTiles > 0) {
-                if (t.compareTo(playerTiles[numberOfTiles-1]) == 1) {
-                    tileIndex = numberOfTiles;
-                }
-                else{
-                    for (int i = 0; i < numberOfTiles - 1; i++) 
-                    {
-                        if (t.compareTo(playerTiles[i]) >= 0 && t.compareTo(playerTiles[i+1])  <= 0) {
-                            tileIndex = i + 1;
-                        }
-                    }
-                }
-    
-                //place the tile to the correct position
-                for (int i = numberOfTiles - 1; i >= tileIndex; i--) 
-                {
-                    playerTiles[i + 1] = playerTiles[i];
-                }
+             // Find the correct position to insert the tile
+            int insertIndex = 0;
+            while (insertIndex < numberOfTiles && t.getValue() > playerTiles[insertIndex].getValue()) 
+            {
+                insertIndex++;
             }
-            playerTiles[tileIndex] = t;
+            // Shifting tiles to one space right to make a space for the new tile.
+            for (int i = numberOfTiles - 1; i >= insertIndex; i--) 
+            {
+                playerTiles[i + 1] = playerTiles[i];
+            }
+            // Insert the tile at the correct position
+            playerTiles[insertIndex] = t;
             numberOfTiles++;
         }
         else

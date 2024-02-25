@@ -5,8 +5,8 @@ public class SimplifiedOkeyGame {
     Player[] players;
     Tile[] tiles;
     int tileCount;
-
     Tile lastDiscardedTile;
+    private boolean devMode;
 
     int currentPlayerIndex = 0;
 
@@ -172,9 +172,17 @@ public class SimplifiedOkeyGame {
 
         if (players[currentPlayerIndex].findLongestChain() < newChain) {
             getLastDiscardedTile();
+            if(devMode)
+                System.out.println(getCurrentPlayerName() + " picked up from discard.");
+            
+            
         }
         else{
             getTopTile();
+            if(devMode)
+               System.out.println(getCurrentPlayerName() + " picked up from tiles.");
+            
+            
         }
     }
 
@@ -265,5 +273,8 @@ public class SimplifiedOkeyGame {
         if(index >= 0 && index <= 3) {
             players[index] = new Player(name);
         }
+    }
+    public void setDevMode(boolean devMode) {
+        this.devMode = devMode;
     }
 }
