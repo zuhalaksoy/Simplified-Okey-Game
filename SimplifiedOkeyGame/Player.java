@@ -8,7 +8,6 @@ public class Player {
         playerTiles = new Tile[15]; // there are at most 15 tiles a player owns at any time
         numberOfTiles = 0; // currently this player owns 0 tiles, will pick tiles at the beggining of the game
     }
-
     /*
      * checks this player's hand to determine if this player is winning
      * the player with a complete chain of 14 consecutive numbers wins the game
@@ -18,15 +17,7 @@ public class Player {
      */
     public boolean checkWinning() {
         int maxLength = findLongestChain();
-        if( maxLength >= 14)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        
+        return maxLength >= 14;   
     }
     /*
      * used for finding the longest chain in this player hand
@@ -40,16 +31,13 @@ public class Player {
         for (int i = 0; i < playerTiles.length - 2; i++)
         {
             
-            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) 
-            {
+            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) {
                 currentChain++; 
-                if (currentChain > longestChain) 
-                {
+                if (currentChain > longestChain) {
                     longestChain = currentChain; 
                 }
             }
-            else if (playerTiles[i].getValue() != playerTiles[i + 1].getValue())
-            {
+            else if (playerTiles[i].getValue() != playerTiles[i + 1].getValue()) {
                 currentChain = 1; // Reset the current chain length
             }
         }
@@ -67,11 +55,9 @@ public class Player {
         for (int i = 0; i < playerTiles.length - 2; i++)
         {
             
-            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) 
-            {
+            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) {
                 currentChain++; 
-                if (currentChain > longestChain) 
-                {
+                if (currentChain > longestChain) {
                     longestChain = currentChain; 
                     middleIndex = longestChain / 2.0 + i;
                 }
@@ -79,8 +65,7 @@ public class Player {
                     middleIndex = middleIndex + longestChain / 2.0 + i;
                 }
             }
-            else if (playerTiles[i].getValue() != playerTiles[i + 1].getValue())
-            {
+            else if (playerTiles[i].getValue() != playerTiles[i + 1].getValue()) {
                 currentChain = 1; // Reset the current chain length
             }
         }
@@ -91,11 +76,9 @@ public class Player {
      * removes and returns the tile in given index position
      */
     public Tile getAndRemoveTile(int index) {
-        if ( this.numberOfTiles > index )
-        {
+        if ( this.numberOfTiles > index ) {
             Tile result = this.playerTiles[index];
-            for ( int i = index + 1; i < this.numberOfTiles; i++ )
-            {
+            for ( int i = index + 1; i < this.numberOfTiles; i++ ) {
                 this.playerTiles[i - 1] = this.playerTiles[i];
             }
             numberOfTiles--;
@@ -103,60 +86,27 @@ public class Player {
         }
         return null;
     }
-
-    /*
-     * TODO: Sort the tile in ascending order
-     * 
-    
-    public void sortTileInAscendingOrder(){
-        int index = -1;
-
-        int noOfTiles = 0;
-        for(int i = 0; i < getTiles().length; i++){
-            if (getTiles()[i] != null) {
-                noOfTiles++;
-            }
-        }
-
-        for(int i = 0; i < noOfTiles; i++){
-            index = i;
-            for(int j = i; j < noOfTiles; j++){
-                if(getTiles()[j].getValue() < getTiles()[index].getValue()){
-                    index = j;
-                }
-            }
-
-            Tile temp = getTiles()[i];
-            getTiles()[i] = getTiles()[index];
-            getTiles()[index] = temp;
-        }
-    } */
-
     /*
      * adds the given tile to this player's hand keeping the ascending order
      * this requires you to loop over the existing tiles to find the correct position,
      * then shift the remaining tiles to the right by one
      */
     public void addTile(Tile t) {
-        if ( this.numberOfTiles < 15 )
-        {
+        if ( this.numberOfTiles < 15 ) {
              // Find the correct position to insert the tile
             int insertIndex = 0;
-            while (insertIndex < numberOfTiles && t.getValue() > playerTiles[insertIndex].getValue()) 
-            {
+            while (insertIndex < numberOfTiles && t.getValue() > playerTiles[insertIndex].getValue()) {
                 insertIndex++;
             }
             // Shifting tiles to one space right to make a space for the new tile.
-            for (int i = numberOfTiles - 1; i >= insertIndex; i--) 
-            {
+            for (int i = numberOfTiles - 1; i >= insertIndex; i--) {
                 playerTiles[i + 1] = playerTiles[i];
             }
             // Insert the tile at the correct position
             playerTiles[insertIndex] = t;
             numberOfTiles++;
         }
-        else
-        {
+        else {
             System.out.println( "You can't have more than 15 tiles.");
         }
     }

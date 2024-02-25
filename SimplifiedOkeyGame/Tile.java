@@ -1,7 +1,5 @@
 public class Tile {
-    
     int value;
-
     /*
      * creates a tile using the given value. False jokers are not included in this game.
      */
@@ -15,16 +13,8 @@ public class Tile {
      */
     public boolean matchingTiles(Tile t) {
         
-        if(this.value == t.value){
-            
-            return true;
-        }
-        else{
-            
-            return false;
-        }
+        return this.value == t.value;
     }
-
     /*
      * should compare the order of these two tiles
      * return 1 if given tile has smaller in value
@@ -33,16 +23,13 @@ public class Tile {
      */
     public int compareTo(Tile t) {
        
-        if(this.matchingTiles(t) == true){
-            
+        if(this.matchingTiles(t) == true) {
             return 0;
         }
-        else if(t.value > this.value){
-            
+        else if(t.value > this.value) {
             return -1;
         }
-        else{
-
+        else {
             return 1;
         }
     }
@@ -54,15 +41,7 @@ public class Tile {
      * otherwise, it should return false (they cannot form a chain)
      */
     public boolean canFormChainWith(Tile t) {
-
-        if(Math.abs(this.value - t.value) == 1){
-
-            return true;
-        }
-        else{
-
-            return false;
-        }
+        return Math.abs(this.value - t.value) == 1;
     }
 
     public String toString() {

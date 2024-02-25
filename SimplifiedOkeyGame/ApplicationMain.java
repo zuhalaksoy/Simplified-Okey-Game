@@ -72,7 +72,7 @@ public class ApplicationMain {
 
                 gameContinues = !game.didGameFinish() && game.hasMoreTileInStack();
 
-                if(gameContinues) {
+                if(gameContinues){
                     // if game continues we need to discard a tile using the given index by the player
                     System.out.println("Which tile you will discard?");
                     System.out.print("Discard the tile in index: ");
@@ -110,18 +110,14 @@ public class ApplicationMain {
                 }
             }
             else{
-                
-                
                 // this is the computer player's turn
                 if(devModeOn) {
                     game.displayDiscardInformation();
                     game.displayCurrentPlayersTiles();
                 }
-
                 // computer picks a tile from tile stack or other player's discard
                 game.pickTileForComputer();
                 gameContinues = !game.didGameFinish() && game.hasMoreTileInStack();
-
                 if(gameContinues) {
                     // if game did not end computer should discard
                     game.discardTileForComputer();
@@ -149,7 +145,6 @@ public class ApplicationMain {
                 }
             }
         }
-
         sc.close();
     }
 }
