@@ -105,8 +105,8 @@ public class SimplifiedOkeyGame {
 
         //Evaluates the longest chain
         for (int i = 1; i < players.length; i++) {
-            if (players[i + 1].findLongestChain() > maxChain) {
-                maxChain = players[i + 1].findLongestChain();
+            if (players[i].findLongestChain() > maxChain) {
+                maxChain = players[i].findLongestChain();
             }
         }
 

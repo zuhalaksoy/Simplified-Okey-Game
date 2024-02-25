@@ -31,7 +31,7 @@ public class Player {
         for (int i = 0; i < playerTiles.length - 2; i++)
         {
             
-            if (playerTiles[i].getValue() == playerTiles[i + 1].getValue() + 1) {
+            if (playerTiles[i].getValue() + 1 == playerTiles[i + 1].getValue()) {
                 currentChain++; 
                 if (currentChain > longestChain) {
                     longestChain = currentChain; 
