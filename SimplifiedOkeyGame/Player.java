@@ -28,9 +28,9 @@ public class Player {
     public int findLongestChain() {
         int longestChain = 0;
         int currentChain = 1;
-        for (int i = 0; i < playerTiles.length - 1; i++)
+        for (int i = 1; i < playerTiles.length - 1; i++)
         {
-            if ( playerTiles[i].getValue() + 1 == playerTiles[i +1 ].getValue() ) {
+            if ( playerTiles[i].getValue()  == playerTiles[i - 1].getValue() + 1 ) {
                 currentChain++; 
                 if (currentChain > longestChain) {
                     longestChain = currentChain; 

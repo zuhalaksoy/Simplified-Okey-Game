@@ -102,27 +102,22 @@ public class SimplifiedOkeyGame {
     public Player[] getPlayerWithHighestLongestChain() {
         int numberOfWinners = 0;
         int maxChain = players [0].findLongestChain();
-
-        //Evaluates the longest chain
         for (int i = 1; i < players.length; i++) {
             if (players[i].findLongestChain() > maxChain) {
                 maxChain = players[i].findLongestChain();
             }
         }
-
-        //Determines number of winners
         for (int i = 0; i < players.length; i++) {
             if (players[i].findLongestChain() == maxChain) {
                 numberOfWinners++;
             }
         }
         Player[] winners = new Player[numberOfWinners];
-        //Add winners to the array
+        int winnerIndex = 0;
         for (int i = 0; i < players.length; i++) {
-            int j = 0;
             if (players[i].findLongestChain() == maxChain) {
-                winners [j] = players [i];
-                j++;
+                winners[winnerIndex] = players[i];
+                winnerIndex++;
             }
         }
         return winners;
