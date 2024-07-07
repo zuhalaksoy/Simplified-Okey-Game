@@ -1,1 +1,1 @@
-# HW2-Simplified-Okey-Game
+# Simplified-Okey-Game
